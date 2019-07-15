@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <script src="../js/main.js"></script>
+    <script src="../js/jquery-1.7.1.js"></script>
+    <script>
+        function position1() {
+            alert("fds");
+            $.post("ceshi.ashx", { "name": "name" }, function (data) {
+                alert(data);
+                
+
+            });
+            alert("fdsf");
+
+        }
+    </script>
+</head>
+<body onload="position1()">
+
+</body>
+</html>
