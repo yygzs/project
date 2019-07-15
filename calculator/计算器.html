@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>悬浮上滑</title>
+</head>
+<style type="text/css">
+	*{
+		margin: 0;
+		padding: 0;
+	}
+	.box{
+		width: 400px;
+		height: 610px;
+		background: #ccc;
+		margin: 0 auto;
+		}
+	.box .title{
+		width: 100%;
+		height: 32px;
+		line-height: 32px;
+		color: white;
+		font-size: 22px;
+		padding-left: 20px;
+		font-weight: bold;
+		box-sizing: border-box;
+	}
+	.box .content{
+		width: 100%;
+		height: 60px;
+		margin-top: 20px;
+		box-sizing: border-box;
+	}
+	.box .content input{
+		width: 100%;
+		height: 60px;
+		font-size: 36px;
+		box-sizing:border-box;
+		line-height: 60px;
+		text-align: right;
+		padding-right: 10px;
+	}
+	.box .but_input{
+		width: 100%;
+		height: 388px;
+		position: relative;
+	}
+	.box .but_input ul{
+		margin:10px 10px;
+	}
+	.box .but_input ul>li{
+		width: 95px;
+		height: 95px;
+		background: #333;
+		list-style: none;
+		float: left;
+		border: 1px solid #ccc;
+		box-sizing: border-box;
+		text-align: center;
+		line-height: 95px;
+		font-size: 36px;
+		color: #fff;
+	} 
+	.box .but_input ul>li:hover{
+		background: #999;
+	}
+	.box .but_input ul>li:nth-child(5),
+	.box .but_input ul>li:nth-child(6),
+	.box .but_input ul>li:nth-child(7),
+	.box .but_input ul>li:nth-child(9),
+	.box .but_input ul>li:nth-child(10),
+	.box .but_input ul>li:nth-child(11),
+	.box .but_input ul>li:nth-child(13),
+	.box .but_input ul>li:nth-child(14),
+	.box .but_input ul>li:nth-child(15),
+	.box .but_input ul>li:nth-child(18) {
+		background: #000;
+	}
+	.box .but_input ul>li:nth-child(5):hover,
+	.box .but_input ul>li:nth-child(6):hover,
+	.box .but_input ul>li:nth-child(7):hover,
+	.box .but_input ul>li:nth-child(9):hover,
+	.box .but_input ul>li:nth-child(10):hover,
+	.box .but_input ul>li:nth-child(11):hover,
+	.box .but_input ul>li:nth-child(13):hover,
+	.box .but_input ul>li:nth-child(14):hover,
+	.box .but_input ul>li:nth-child(15):hover,
+	.box .but_input ul>li:nth-child(18):hover {
+		background: #999;
+	}
+</style>
+<script type="text/javascript">
+	var numArray=new Array()
+	var firstNum = 0;
+	var secondNum = 0;
+	var resultData = '';
+	var temp = 0;
+	function cacalculateData(value){
+			switch(value){
+				case '0':
+				    temp = document.getElementById("text_value").value;
+					temp = temp + 0;
+					document.getElementById("text_value").value = temp;
+					break;
+				case '1':
+					temp = document.getElementById("text_value").value;
+					temp = temp + 1;
+					document.getElementById("text_value").value = temp;
+					break;
+				case '2':
+					temp = document.getElementById("text_value").value;
+					temp = temp + 2;
+					document.getElementById("text_value").value = temp;
+					break;
+				case '3':
+					temp = document.getElementById("text_value").value;
+					temp = temp + 3;
+					document.getElementById("text_value").value = temp;
+					break;
+				case '4':
+					temp = document.getElementById("text_value").value;
+					temp = temp + 4;
+					document.getElementById("text_value").value = temp;
+					break;
+				case '5':
+					temp = document.getElementById("text_value").value;
+					temp = temp + 5;
+					document.getElementById("text_value").value = temp;
+					break;
+				case '6':
+					temp = document.getElementById("text_value").value;
+					temp = temp + 6;
+					document.getElementById("text_value").value = temp;
+					break;
+				case '7':
+					temp = document.getElementById("text_value").value;
+					temp = temp + 7;
+					document.getElementById("text_value").value = temp;
+					break;
+				case '8':
+					temp = document.getElementById("text_value").value;
+					temp = temp + 8;
+					document.getElementById("text_value").value = temp;
+					break;
+				case '9':
+					temp = document.getElementById("text_value").value;
+					temp = temp + 9;
+					document.getElementById("text_value").value = temp;
+					break;
+				case 're':
+					temp = document.getElementById("text_value").value;
+					temp = parseFloat(temp) * -1;
+					document.getElementById("text_value").value = temp;
+					break;
+				case '.':
+					temp = document.getElementById("text_value").value;
+					temp = temp + '.';
+					document.getElementById("text_value").value = temp;
+					break;
+				case 'ce':
+					document.getElementById("text_value").value = 0;
+					break;
+				case 'c':
+					document.getElementById("text_value").value = 0;
+					firstNum = 0;
+					secondNum = 0;
+					resultData = 0;
+					break;
+				case 'del':
+					temp = document.getElementById("text_value").value;
+					var delNum = temp.substr(0,temp.length-1);
+					document.getElementById("text_value").value = delNum;
+					break;
+				case '+':
+					operatorStr = '+';
+					var num_temp = document.getElementById("text_value").value;
+					assignmentData(num_temp);
+					document.getElementById("text_value").value = '';
+					break;
+				case '-':
+					operatorStr = '-';
+					var num_temp = document.getElementById("text_value").value;
+					assignmentData(num_temp);
+					document.getElementById("text_value").value = '';
+					break;
+				case '*':
+					operatorStr = '*';
+					var num_temp = document.getElementById("text_value").value;
+					assignmentData(num_temp);
+					document.getElementById("text_value").value = '';
+					break;
+				case '/':
+					operatorStr = '/';
+					var num_temp = document.getElementById("text_value").value;
+					assignmentData(num_temp);
+					document.getElementById("text_value").value = '';
+					break;
+				case '=':
+					var num_temp = document.getElementById("text_value").value;
+					assignmentData(num_temp);
+					document.getElementById("text_value").value = '';
+				 	if (operatorStr == '+') {
+				 			var resultData = document.getElementById("text_value").value;
+				 			resultData = parseFloat(firstNum) + parseFloat(secondNum);
+				 			document.getElementById("text_value").value = resultData;
+				 	}
+				 	if (operatorStr == '-') {
+				 			var resultData = document.getElementById("text_value").value;
+				 			resultData = parseFloat(firstNum) - parseFloat(secondNum);
+				 			document.getElementById("text_value").value = resultData;
+				 	}	
+				 	if (operatorStr == '*') {
+				 			var resultData = document.getElementById("text_value").value;
+				 			resultData = parseFloat(firstNum) * parseFloat(secondNum);
+				 			document.getElementById("text_value").value = resultData;
+				 	}	
+				 	if (operatorStr == '/') {
+				 			var resultData = document.getElementById("text_value").value;
+				 			resultData = parseFloat(firstNum) / parseFloat(secondNum);
+				 			document.getElementById("text_value").value = resultData;
+				 	}		
+				 	break;
+			}
+	}
+	function assignmentData(num_data){
+		if (firstNum == 0) {
+			firstNum = num_data;
+			// alert(firstNum);
+		}else if (secondNum == 0) {
+			secondNum = num_data;
+			// alert(secondNum);
+		}else{
+			alert("输入有误！");
+		}
+	}
+</script>
+<body>
+	<div class="box">
+		<div class="title">计算器</div>
+		<div class="content">
+			<input type="text" name="" value="0" placeholder="" id="text_value">
+		</div>
+		<div class="but_input">
+			<ul>
+				<li onclick="cacalculateData('ce')">CE</li>
+				<li onclick="cacalculateData('c')">C</li>
+				<li onclick="cacalculateData('del')">
+					<img src="images/删除.png" alt="" style="margin-top: 17px;">
+				</li>
+				<li onclick="cacalculateData('/')">÷</li>
+				<li onclick="cacalculateData('7')">7</li>
+				<li onclick="cacalculateData('8')">8</li>
+				<li onclick="cacalculateData('9')">9</li>
+				<li onclick="cacalculateData('*')">×</li>
+				<li onclick="cacalculateData('4')">4</li>
+				<li onclick="cacalculateData('5')">5</li>
+				<li onclick="cacalculateData('6')">6</li>
+				<li onclick="cacalculateData('-')">-</li>
+				<li onclick="cacalculateData('1')">1</li>
+				<li onclick="cacalculateData('2')">2</li>
+				<li onclick="cacalculateData('3')">3</li>
+				<li onclick="cacalculateData('+')">+</li>
+				<li onclick="cacalculateData('re')">+/-</li>
+				<li onclick="cacalculateData('0')">0</li>
+				<li onclick="cacalculateData('.')">.</li>
+				<li onclick="cacalculateData('=')">=</li>
+			</ul>
+		</div>
+	</div>	
+</body>
+</html>
